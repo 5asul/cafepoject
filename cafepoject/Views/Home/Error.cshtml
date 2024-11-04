@@ -1,0 +1,16 @@
+﻿@model cafepoject.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h2>Oops! Something Went Wrong</h2>
+<p>We apologize for the inconvenience. Please try again later or contact support if the problem persists.</p>
+
+@if (Model?.RequestId != null)
+{
+    <p><strong>Request ID:</strong> @Model.RequestId</p>
+    <p>Please mention this ID if you contact support.</p>
+}
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Return to Home</a>

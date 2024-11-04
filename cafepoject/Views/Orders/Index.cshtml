@@ -1,0 +1,46 @@
+﻿@model IEnumerable<cafepoject.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="display-6">Orders List</h2>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i> Place New Order
+        </a>
+    </div>
+
+    <table class="table table-hover table-striped shadow-sm border rounded">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Order Date</th>
+                <th scope="col">Customer ID</th>
+                <th scope="col">Product ID</th>
+                <th scope="col" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderDate.ToShortDateString()</td>
+                    <td>@order.CustomerId</td>
+                    <td>@order.ProductId</td>
+                    <td class="text-center">
+                        <a asp-action="Details" asp-route-id="@order.OrderId" class="btn btn-info btn-sm me-1">
+                            <i class="fas fa-eye"></i> Details
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@order.OrderId" class="btn btn-warning btn-sm me-1">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@order.OrderId" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
