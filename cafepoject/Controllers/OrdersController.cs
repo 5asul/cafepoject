@@ -22,9 +22,12 @@ namespace cafepoject.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-              return _context.Orders != null ? 
-                          View(await _context.Orders.ToListAsync()) :
-                          Problem("Entity set 'CafeContext.Orders'  is null.");
+            var orders = await _context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Product)
+                .ToListAsync();
+                
+            return View(orders);
         }
 
         // GET: Orders/Details/5
